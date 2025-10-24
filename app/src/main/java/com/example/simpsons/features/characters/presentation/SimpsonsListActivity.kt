@@ -1,4 +1,4 @@
-package com.example.simpsons.presentation
+package com.example.simpsons.features.characters.presentation
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
