@@ -44,6 +44,9 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     //Fragments
     implementation(libs.androidx.fragment.ktx)
+    //Retrofit
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
