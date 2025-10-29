@@ -5,7 +5,7 @@ import com.example.simpsons.features.characters.domain.Character
 import com.example.simpsons.features.characters.domain.CharactersRepository
 
 class CharactersDataRepository(private val charactersApiRemoteDataSource: CharactersApiRemoteDataSource): CharactersRepository {
-    override fun getAllCharactersList(): Result<List<Character>> {
-        TODO("Not yet implemented")
+    override fun getAllCharactersList(pageNumber: String): Result<List<Character>> {
+        return charactersApiRemoteDataSource.getAllSimpsons(pageNumber)
     }
 }
