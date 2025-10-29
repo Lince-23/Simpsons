@@ -1,11 +1,10 @@
-package com.example.simpsons.features.characters.presentation
+package com.example.simpsons
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.simpsons.R
 
 class SimpsonsMainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
