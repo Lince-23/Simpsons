@@ -5,7 +5,7 @@ import com.example.simpsons.features.characters.domain.Character
 import com.example.simpsons.features.characters.domain.ErrorApp
 
 class CharactersApiRemoteDataSource(private val apiClient: ApiClient) {
-    fun getAllSimpsons(pageNumber: String): Result<List<Character>> {
+    fun getAllSimpsons(pageNumber: Int): Result<List<Character>> {
         val apiService = apiClient.createService(CharactersApiService::class.java)
         val apiResponse = apiService.getAllCharacters(pageNumber)
         return if (apiResponse.isSuccessful && apiResponse.errorBody() == null) {

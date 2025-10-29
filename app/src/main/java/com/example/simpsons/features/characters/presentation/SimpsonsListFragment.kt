@@ -32,13 +32,15 @@ class SimpsonsListFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_simpsons_list, container, false)
     }
 
+    private val page = 1
     private val viewModel = SimpsonsListViewModel(
         GetCharactersListUseCase(
             CharactersDataRepository(
                 CharactersApiRemoteDataSource(
                     ApiClient()
                 )
-            )
+            ),
+            page
         )
     )
 
