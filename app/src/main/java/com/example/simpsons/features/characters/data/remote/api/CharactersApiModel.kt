@@ -4,7 +4,7 @@ import com.example.simpsons.features.characters.domain.Character
 
 data class CharactersApiModel(
     val name: String,
-    val age: String,
+    val age: String?,
     val occupation: String,
     val status: String
 )
