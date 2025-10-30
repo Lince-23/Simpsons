@@ -49,6 +49,9 @@ dependencies {
     implementation(libs.converter.gson)
     //Coroutines
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    //Coil
+    implementation(libs.coil.compose)
+    implementation(libs.coil.network.okhttp)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
