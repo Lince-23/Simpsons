@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -53,10 +54,11 @@ class SimpsonsListFragment : Fragment() {
 
     private fun setUpObserver() {
         val observer = Observer<SimpsonsListViewModel.UiState> { uiState ->
+            val fslPbProgressBar: ProgressBar = requireView().findViewById(R.id.fslPbProgressBar)
             if (uiState.isLoading) {
-
+                fslPbProgressBar.visibility = ProgressBar.VISIBLE
             } else {
-
+                fslPbProgressBar.visibility = ProgressBar.GONE
             }
 
             uiState.errorApp?.let {
