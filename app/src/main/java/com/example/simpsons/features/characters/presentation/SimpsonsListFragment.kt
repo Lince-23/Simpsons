@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.example.simpsons.R
-import com.example.simpsons.core.ApiClient
+import com.example.simpsons.core.api.ApiClient
 import com.example.simpsons.features.characters.data.CharactersDataRepository
 import com.example.simpsons.features.characters.data.remote.api.CharactersApiRemoteDataSource
 import com.example.simpsons.features.characters.domain.GetCharactersListUseCase
