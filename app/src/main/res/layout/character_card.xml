@@ -22,7 +22,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginVertical="20sp">
+            android:layout_marginVertical="20sp"
+            android:padding="15dp">
             <TextView
                 android:id="@+id/ccTvName"
                 android:layout_width="wrap_content"
