@@ -52,6 +52,8 @@ dependencies {
     //Coil
     implementation(libs.coil.compose)
     implementation(libs.coil.network.okhttp)
+    //Mockk
+    testImplementation(libs.mockk)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
