@@ -11,7 +11,7 @@ class CharactersApiRemoteDataSource(private val apiClient: ApiClient) {
         return withContext(Dispatchers.IO) {
             val apiService = apiClient.createService(CharactersApiService::class.java)
             val apiResponse = apiService.getAllCharacters(pageNumber)
-             if (apiResponse.isSuccessful && apiResponse.errorBody() == null) {
+            if (apiResponse.isSuccessful && apiResponse.errorBody() == null) {
                 Result.success(
                     apiResponse.body()!!.toCharacter()
                 )
