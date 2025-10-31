@@ -65,11 +65,11 @@ class SimpsonsListFragment : Fragment() {
                 fslPbProgressBar.visibility = ProgressBar.GONE
             }
 
-            uiState.errorApp?.let {errorApp ->
+            if (uiState.errorApp != null) {
                 val fslTvErrorText = requireView().findViewById<TextView>(R.id.fslTvErrorText)
-                if (errorApp == ErrorApp.ServerError) {
+                if (uiState.errorApp == ErrorApp.ServerError) {
                     fslTvErrorText.text = "Error del servidor"
-                } else if (errorApp == ErrorApp.NetworkError) {
+                } else if (uiState.errorApp == ErrorApp.NetworkError) {
                     fslTvErrorText.text = "Error de red"
                 }
 
@@ -78,7 +78,7 @@ class SimpsonsListFragment : Fragment() {
                     viewModel.loadCharacters()
                 }
 
-            } ?: {
+            } else {
                 fslLlErrorView.visibility = LinearLayout.GONE
             }
 
