@@ -5,6 +5,7 @@ import com.example.simpsons.features.characters.domain.Character
 import com.example.simpsons.features.characters.domain.ErrorApp
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import java.net.UnknownHostException
 
 class CharactersApiRemoteDataSource(private val apiClient: ApiClient) {
     suspend fun getAllSimpsons(pageNumber: Int): Result<List<Character>> {
@@ -22,7 +23,7 @@ class CharactersApiRemoteDataSource(private val apiClient: ApiClient) {
                     )
                 }
 
-            } catch (e: Exception){
+            } catch (e: UnknownHostException){
                 Result.failure(
                     ErrorApp.NetworkError
                 )
