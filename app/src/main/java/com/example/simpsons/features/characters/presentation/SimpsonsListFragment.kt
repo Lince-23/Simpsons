@@ -65,11 +65,11 @@ class SimpsonsListFragment : Fragment() {
                 fslPbProgressBar.visibility = ProgressBar.GONE
             }
 
-            uiState.errorApp?.let {
+            uiState.errorApp?.let {errorApp ->
                 val fslTvErrorText = requireView().findViewById<TextView>(R.id.fslTvErrorText)
-                if (uiState.errorApp == ErrorApp.ServerError) {
+                if (errorApp == ErrorApp.ServerError) {
                     fslTvErrorText.text = "Error del servidor"
-                } else if (uiState.errorApp == ErrorApp.NetworkError) {
+                } else if (errorApp == ErrorApp.NetworkError) {
                     fslTvErrorText.text = "Error de red"
                 }
 
