@@ -17,6 +17,8 @@ class SimpsonsListViewModel(private val getCharactersListUseCase: GetCharactersL
 
     fun loadCharacters() {
         viewModelScope.launch {
+            _uiState.value = UiState(isLoading = true)
+
             getCharactersListUseCase().fold(
                 {
                     isSuccess(it)
