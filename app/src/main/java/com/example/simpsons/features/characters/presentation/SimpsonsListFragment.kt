@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.ProgressBar
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,6 +16,7 @@ import com.example.simpsons.core.api.ApiClient
 import com.example.simpsons.features.characters.data.CharactersDataRepository
 import com.example.simpsons.features.characters.data.remote.api.CharactersApiRemoteDataSource
 import com.example.simpsons.features.characters.domain.Character
+import com.example.simpsons.features.characters.domain.ErrorApp
 import com.example.simpsons.features.characters.domain.GetCharactersListUseCase
 
 
@@ -64,6 +66,13 @@ class SimpsonsListFragment : Fragment() {
             }
 
             uiState.errorApp?.let {
+                val fslTvErrorText = requireView().findViewById<TextView>(R.id.fslTvErrorText)
+                if (uiState.errorApp == ErrorApp.ServerError) {
+                    fslTvErrorText.text = "Error del servidor"
+                } else if (uiState.errorApp == ErrorApp.NetworkError) {
+                    fslTvErrorText.text = "Error de red"
+                }
+
                 fslLlErrorView.visibility = LinearLayout.VISIBLE
                 fslLlErrorView.setOnClickListener {
                     viewModel.loadCharacters()
