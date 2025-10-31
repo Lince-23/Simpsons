@@ -4,9 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -58,7 +60,7 @@ class SimpsonsListFragment : Fragment() {
     private fun setUpObserver() {
         val observer = Observer<SimpsonsListViewModel.UiState> { uiState ->
             val fslPbProgressBar: ProgressBar = requireView().findViewById(R.id.fslPbProgressBar)
-            val fslLlErrorView: LinearLayout = requireView().findViewById(R.id.fslLlErrorView)
+            val fslCvErrorView: CardView = requireView().findViewById(R.id.fslCvErrorView)
             if (uiState.isLoading) {
                 fslPbProgressBar.visibility = ProgressBar.VISIBLE
             } else {
@@ -67,19 +69,20 @@ class SimpsonsListFragment : Fragment() {
 
             if (uiState.errorApp != null) {
                 val fslTvErrorText = requireView().findViewById<TextView>(R.id.fslTvErrorText)
+                val fslBRetry = requireView().findViewById<Button>(R.id.fslBRetry)
                 if (uiState.errorApp == ErrorApp.ServerError) {
-                    fslTvErrorText.text = "Error del servidor"
+                    fslTvErrorText.text = "Error del servidor \nIntentelo más tarde"
                 } else if (uiState.errorApp == ErrorApp.NetworkError) {
-                    fslTvErrorText.text = "Error de red"
+                    fslTvErrorText.text = "Error de red \nRevise su conexión a internet"
                 }
 
-                fslLlErrorView.visibility = LinearLayout.VISIBLE
-                fslLlErrorView.setOnClickListener {
+                fslCvErrorView.visibility = CardView.VISIBLE
+                fslBRetry.setOnClickListener {
                     viewModel.loadCharacters()
                 }
 
             } else {
-                fslLlErrorView.visibility = LinearLayout.GONE
+                fslCvErrorView.visibility = CardView.GONE
             }
 
             uiState.charactersList?.let {
