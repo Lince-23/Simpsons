@@ -9,17 +9,20 @@ import kotlinx.coroutines.withContext
 class CharactersApiRemoteDataSource(private val apiClient: ApiClient) {
     suspend fun getAllSimpsons(pageNumber: Int): Result<List<Character>> {
         return withContext(Dispatchers.IO) {
-            val apiService = apiClient.createService(CharactersApiService::class.java)
-            val apiResponse = apiService.getAllCharacters(pageNumber)
-            if (apiResponse.isSuccessful && apiResponse.errorBody() == null) {
-                Result.success(
-                    apiResponse.body()!!.toCharacter()
-                )
-            } else if (apiResponse.errorBody() != null) {
-                Result.failure(
-                    ErrorApp.ServerError
-                )
-            } else {
+            try {
+                val apiService = apiClient.createService(CharactersApiService::class.java)
+                val apiResponse = apiService.getAllCharacters(pageNumber)
+                if (apiResponse.isSuccessful && apiResponse.errorBody() == null) {
+                    Result.success(
+                        apiResponse.body()!!.toCharacter()
+                    )
+                } else {
+                    Result.failure(
+                        ErrorApp.ServerError
+                    )
+                }
+
+            } catch (e: Exception){
                 Result.failure(
                     ErrorApp.NetworkError
                 )
