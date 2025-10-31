@@ -15,9 +15,13 @@ class CharactersApiRemoteDataSource(private val apiClient: ApiClient) {
                 Result.success(
                     apiResponse.body()!!.toCharacter()
                 )
-            } else {
+            } else if (apiResponse.errorBody() != null) {
                 Result.failure(
                     ErrorApp.ServerError
+                )
+            } else {
+                Result.failure(
+                    ErrorApp.NetworkError
                 )
             }
         }
