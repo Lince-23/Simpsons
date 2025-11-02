@@ -4,17 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.LinearLayout
 import android.widget.ProgressBar
-import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.simpsons.R
 import com.example.simpsons.core.api.ApiClient
+import com.example.simpsons.databinding.FragmentSimpsonsListBinding
 import com.example.simpsons.features.characters.data.CharactersDataRepository
 import com.example.simpsons.features.characters.data.remote.api.CharactersApiRemoteDataSource
 import com.example.simpsons.features.characters.domain.Character
@@ -28,15 +25,27 @@ import com.example.simpsons.features.characters.domain.GetCharactersListUseCase
  * create an instance of this fragment.
  */
 class SimpsonsListFragment : Fragment() {
+
+    private var _binding: FragmentSimpsonsListBinding? = null
+    private val binding get() = _binding!!
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_simpsons_list, container, false)
+        _binding = FragmentSimpsonsListBinding.inflate(inflater, container, false)
+        val view = binding.root
+        return view
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -59,8 +68,8 @@ class SimpsonsListFragment : Fragment() {
 
     private fun setUpObserver() {
         val observer = Observer<SimpsonsListViewModel.UiState> { uiState ->
-            val fslPbProgressBar: ProgressBar = requireView().findViewById(R.id.fslPbProgressBar)
-            val fslCvErrorView: CardView = requireView().findViewById(R.id.fslCvErrorView)
+            val fslPbProgressBar: ProgressBar = binding.fslPbProgressBar
+            val fslCvErrorView: CardView = binding.fslCvErrorView
             if (uiState.isLoading) {
                 fslPbProgressBar.visibility = ProgressBar.VISIBLE
             } else {
@@ -68,8 +77,8 @@ class SimpsonsListFragment : Fragment() {
             }
 
             if (uiState.errorApp != null) {
-                val fslTvErrorText = requireView().findViewById<TextView>(R.id.fslTvErrorText)
-                val fslBRetry = requireView().findViewById<Button>(R.id.fslBRetry)
+                val fslTvErrorText = binding.fslTvErrorText
+                val fslBRetry = binding.fslBRetry
                 if (uiState.errorApp == ErrorApp.ServerError) {
                     fslTvErrorText.text = "Error del servidor \nIntentelo más tarde"
                 } else if (uiState.errorApp == ErrorApp.NetworkError) {
@@ -94,7 +103,7 @@ class SimpsonsListFragment : Fragment() {
 
     private fun setUpRecyclerView(simpsonsList: List<Character>) {
         val adapter = SimpsonsListAdapter(simpsonsList)
-        val recyclerView: RecyclerView = requireView().findViewById(R.id.fslRvCharactersList)
+        val recyclerView: RecyclerView = binding.fslRvCharactersList
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = adapter
     }
