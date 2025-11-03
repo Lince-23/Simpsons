@@ -18,12 +18,6 @@ import com.example.simpsons.features.characters.domain.Character
 import com.example.simpsons.features.characters.domain.ErrorApp
 import com.example.simpsons.features.characters.domain.GetCharactersListUseCase
 
-
-/**
- * A simple [Fragment] subclass.
- * Use the [SimpsonsListFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class SimpsonsListFragment : Fragment() {
 
     private var _binding: FragmentSimpsonsListBinding? = null
