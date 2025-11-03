@@ -9,14 +9,19 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.add
 import androidx.fragment.app.commit
+import com.example.simpsons.databinding.ActivitySimpsonsMainBinding
 import com.example.simpsons.features.characters.presentation.SimpsonsListFragment
 
 class SimpsonsMainActivity : AppCompatActivity() {
+    private lateinit var binding: ActivitySimpsonsMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = ActivitySimpsonsMainBinding.inflate(layoutInflater)
+        val view = binding.root
         enableEdgeToEdge()
-        setContentView(R.layout.activity_simpsons_main)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+        setContentView(view)
+        ViewCompat.setOnApplyWindowInsetsListener(view) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
