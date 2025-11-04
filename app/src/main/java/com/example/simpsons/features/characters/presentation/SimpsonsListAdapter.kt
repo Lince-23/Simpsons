@@ -12,7 +12,7 @@ import com.example.simpsons.R
 import com.example.simpsons.databinding.CharacterCardBinding
 import com.example.simpsons.features.characters.domain.Character
 
-class SimpsonsListAdapter(private val dataset: List<Character>) :
+class SimpsonsListAdapter(private var dataset: List<Character>) :
     RecyclerView.Adapter<SimpsonsListAdapter.ViewHolder>() {
     class ViewHolder(private val binding: CharacterCardBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(character: Character){
@@ -39,4 +39,9 @@ class SimpsonsListAdapter(private val dataset: List<Character>) :
     }
 
     override fun getItemCount() = dataset.size
+
+    fun updateCharacters(newCharactersList: List<Character>){
+        dataset = newCharactersList
+        notifyDataSetChanged()
+    }
 }
