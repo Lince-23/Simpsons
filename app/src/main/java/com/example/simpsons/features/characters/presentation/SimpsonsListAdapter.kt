@@ -9,21 +9,17 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import coil3.load
 import com.example.simpsons.R
+import com.example.simpsons.databinding.CharacterCardBinding
 import com.example.simpsons.features.characters.domain.Character
 
 class SimpsonsListAdapter(private val dataset: List<Character>) :
     RecyclerView.Adapter<SimpsonsListAdapter.ViewHolder>() {
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val ccTvName: TextView
-        val ccTvOccupation: TextView
-        val ccTvStatus: TextView
-        val ccIvCharacter: ImageView
-
-        init {
-            ccTvName = view.findViewById(R.id.ccTvName)
-            ccTvOccupation = view.findViewById(R.id.ccTvOccupation)
-            ccTvStatus = view.findViewById(R.id.ccTvStatus)
-            ccIvCharacter = view.findViewById(R.id.ccIvCharacter)
+    class ViewHolder(private val binding: CharacterCardBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(character: Character){
+            binding.ccTvName.text = character.name
+            binding.ccTvOccupation.text = character.occupation
+            binding.ccTvStatus.text = character.status
+            binding.ccIvCharacter.load(character.portrait_path)
         }
     }
 
@@ -31,20 +27,15 @@ class SimpsonsListAdapter(private val dataset: List<Character>) :
         parent: ViewGroup,
         viewType: Int
     ): ViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.character_card, parent, false)
-        return ViewHolder(view)
+        val binding = CharacterCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ViewHolder(binding)
     }
 
     override fun onBindViewHolder(
         holder: ViewHolder,
         position: Int
     ) {
-        holder.ccTvName.text = dataset[position].name
-        holder.ccTvOccupation.text = dataset[position].occupation
-        holder.ccTvStatus.text = dataset[position].status
-        Log.d("@dev", "${dataset[position].portrait_path}")
-        holder.ccIvCharacter.load(dataset[position].portrait_path)
+        holder.bind(dataset[position])
     }
 
     override fun getItemCount() = dataset.size
