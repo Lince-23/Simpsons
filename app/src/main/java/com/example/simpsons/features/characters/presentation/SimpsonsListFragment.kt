@@ -23,6 +23,9 @@ class SimpsonsListFragment : Fragment() {
     private var _binding: FragmentSimpsonsListBinding? = null
     private val binding get() = _binding!!
 
+    private val adapter = SimpsonsListAdapter(emptyList())
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -44,6 +47,7 @@ class SimpsonsListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setUpRecyclerView()
         setUpObserver()
         viewModel.loadCharacters()
     }
@@ -89,14 +93,13 @@ class SimpsonsListFragment : Fragment() {
             }
 
             uiState.charactersList?.let {
-                setUpRecyclerView(uiState.charactersList)
+                adapter.updateCharacters(newCharactersList = uiState.charactersList)
             }
         }
         viewModel.uiState.observe(viewLifecycleOwner, observer)
     }
 
-    private fun setUpRecyclerView(simpsonsList: List<Character>) {
-        val adapter = SimpsonsListAdapter(simpsonsList)
+    private fun setUpRecyclerView() {
         val recyclerView: RecyclerView = binding.fslRvCharactersList
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = adapter
