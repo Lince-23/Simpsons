@@ -26,11 +26,5 @@ class SimpsonsMainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        if (savedInstanceState == null) {
-            supportFragmentManager.commit {
-                setReorderingAllowed(true)
-                add<SimpsonsListFragment>(R.id.mainFragment)
-            }
-        }
     }
 }

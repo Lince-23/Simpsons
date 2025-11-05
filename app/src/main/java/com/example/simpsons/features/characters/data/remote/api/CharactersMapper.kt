@@ -4,15 +4,15 @@ import com.example.simpsons.features.characters.domain.Character
 
 fun CharactersApiModel.toModel(): Character {
     return Character(
+        this.id,
         this.name,
-        this.age,
         this.occupation,
         this.status,
         "https://cdn.thesimpsonsapi.com/200${this.portrait_path}"
     )
 }
 
-fun ApiResponse.toCharacter(): List<Character>{
+fun ApiResponse.toCharacter(): List<Character> {
     return this.results.map { character ->
         character.toModel()
     }
