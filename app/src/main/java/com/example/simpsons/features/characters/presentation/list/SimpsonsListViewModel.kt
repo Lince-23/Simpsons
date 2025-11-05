@@ -1,12 +1,12 @@
-package com.example.simpsons.features.characters.presentation
+package com.example.simpsons.features.characters.presentation.list
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.simpsons.features.characters.domain.Character
+import com.example.simpsons.features.characters.domain.model.Character
 import com.example.simpsons.features.characters.domain.ErrorApp
-import com.example.simpsons.features.characters.domain.GetCharactersListUseCase
+import com.example.simpsons.features.characters.domain.usecase.GetCharactersListUseCase
 import kotlinx.coroutines.launch
 
 class SimpsonsListViewModel(private val getCharactersListUseCase: GetCharactersListUseCase) :

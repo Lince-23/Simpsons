@@ -1,6 +1,4 @@
-package com.example.simpsons.features.characters.data.remote.api
-
-import com.example.simpsons.features.characters.domain.Character
+package com.example.simpsons.features.characters.data.remote.api.model
 
 data class CharactersApiModel(
     val id: String,

@@ -1,5 +1,7 @@
 package com.example.simpsons.features.characters.domain
 
+import com.example.simpsons.features.characters.domain.model.Character
+import com.example.simpsons.features.characters.domain.usecase.GetCharactersListUseCase
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
