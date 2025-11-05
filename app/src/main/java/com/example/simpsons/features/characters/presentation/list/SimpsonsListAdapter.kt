@@ -1,11 +1,11 @@
-package com.example.simpsons.features.characters.presentation
+package com.example.simpsons.features.characters.presentation.list
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil3.load
 import com.example.simpsons.databinding.CharacterCardBinding
-import com.example.simpsons.features.characters.domain.Character
+import com.example.simpsons.features.characters.domain.model.Character
 
 class SimpsonsListAdapter(
     private var dataset: List<Character>,

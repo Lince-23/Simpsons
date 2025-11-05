@@ -1,16 +1,11 @@
 package com.example.simpsons
 
-import android.graphics.Insets.add
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.add
-import androidx.fragment.app.commit
 import com.example.simpsons.databinding.ActivitySimpsonsMainBinding
-import com.example.simpsons.features.characters.presentation.SimpsonsListFragment
 
 class SimpsonsMainActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySimpsonsMainBinding

@@ -1,4 +1,4 @@
-package com.example.simpsons.features.characters.domain
+package com.example.simpsons.features.characters.domain.model
 
 data class Character(
     val id: String,

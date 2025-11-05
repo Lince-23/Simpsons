@@ -1,6 +1,8 @@
 package com.example.simpsons.features.characters.data.remote.api
 
-import com.example.simpsons.features.characters.domain.Character
+import com.example.simpsons.features.characters.data.remote.api.model.ApiResponse
+import com.example.simpsons.features.characters.data.remote.api.model.CharactersApiModel
+import com.example.simpsons.features.characters.domain.model.Character
 
 fun CharactersApiModel.toModel(): Character {
     return Character(

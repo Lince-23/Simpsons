@@ -1,7 +1,7 @@
 package com.example.simpsons.features.characters.data.remote.api
 
 import com.example.simpsons.core.api.ApiClient
-import com.example.simpsons.features.characters.domain.Character
+import com.example.simpsons.features.characters.domain.model.Character
 import com.example.simpsons.features.characters.domain.ErrorApp
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

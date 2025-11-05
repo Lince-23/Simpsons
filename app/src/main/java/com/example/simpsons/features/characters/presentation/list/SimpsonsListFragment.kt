@@ -1,4 +1,4 @@
-package com.example.simpsons.features.characters.presentation
+package com.example.simpsons.features.characters.presentation.list
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,14 +11,13 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.simpsons.R
 import com.example.simpsons.core.api.ApiClient
 import com.example.simpsons.databinding.FragmentSimpsonsListBinding
 import com.example.simpsons.features.characters.data.CharactersDataRepository
 import com.example.simpsons.features.characters.data.remote.api.CharactersApiRemoteDataSource
-import com.example.simpsons.features.characters.domain.Character
+import com.example.simpsons.features.characters.domain.model.Character
 import com.example.simpsons.features.characters.domain.ErrorApp
-import com.example.simpsons.features.characters.domain.GetCharactersListUseCase
+import com.example.simpsons.features.characters.domain.usecase.GetCharactersListUseCase
 
 class SimpsonsListFragment : Fragment() {
 

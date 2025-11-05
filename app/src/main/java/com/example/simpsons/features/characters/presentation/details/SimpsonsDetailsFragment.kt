@@ -1,4 +1,4 @@
-package com.example.simpsons.features.character_details.presentation
+package com.example.simpsons.features.characters.presentation.details
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
