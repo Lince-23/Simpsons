@@ -1,14 +1,9 @@
 package com.example.simpsons.features.characters.presentation
 
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import coil3.load
-import com.example.simpsons.R
 import com.example.simpsons.databinding.CharacterCardBinding
 import com.example.simpsons.features.characters.domain.Character
 
