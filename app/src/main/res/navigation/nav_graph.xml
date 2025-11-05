@@ -18,5 +18,9 @@
         android:id="@+id/fragment_details"
         android:name="com.example.simpsons.features.character_details.presentation.SimpsonsDetailsFragment"
         android:label="@string/details_fragment"
-        tools:layout="@layout/fragment_simpsons_details" />
+        tools:layout="@layout/fragment_simpsons_details">
+        <argument
+            android:name="characterId"
+            app:argType="string" />
+    </fragment>
 </navigation>
