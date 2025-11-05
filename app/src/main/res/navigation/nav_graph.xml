@@ -22,5 +22,10 @@
         <argument
             android:name="characterId"
             app:argType="string" />
+        <action
+            android:id="@+id/action_fragment_details_to_fragment_list"
+            app:popUpTo="@id/action_fragment_details_to_fragment_list"
+            app:destination="@+id/fragment_list"
+            app:popUpToInclusive="true"/>
     </fragment>
 </navigation>
