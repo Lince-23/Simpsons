@@ -8,8 +8,10 @@ import android.widget.ProgressBar
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.simpsons.R
 import com.example.simpsons.core.api.ApiClient
 import com.example.simpsons.databinding.FragmentSimpsonsListBinding
 import com.example.simpsons.features.characters.data.CharactersDataRepository
@@ -23,7 +25,7 @@ class SimpsonsListFragment : Fragment() {
     private var _binding: FragmentSimpsonsListBinding? = null
     private val binding get() = _binding!!
 
-    private val adapter = SimpsonsListAdapter(emptyList())
+    private lateinit var adapter: SimpsonsListAdapter
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -101,7 +103,22 @@ class SimpsonsListFragment : Fragment() {
 
     private fun setUpRecyclerView() {
         val recyclerView: RecyclerView = binding.fslRvCharactersList
-        recyclerView.layoutManager = LinearLayoutManager(context)
+
+
+        adapter = SimpsonsListAdapter(emptyList(), object : CharacterListener {
+            override fun onItemClick(character: Character) {
+                navigateToDetailsFragment(character.id)
+            }
+        })
+
+
         recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(context)
+    }
+
+    private fun navigateToDetailsFragment(id: String) {
+        val bundle = Bundle()
+        bundle.putString("id", id)
+        findNavController().navigate(R.id.fragment_details, bundle)
     }
 }

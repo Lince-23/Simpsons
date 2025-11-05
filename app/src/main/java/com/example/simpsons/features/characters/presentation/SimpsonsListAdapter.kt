@@ -7,10 +7,14 @@ import coil3.load
 import com.example.simpsons.databinding.CharacterCardBinding
 import com.example.simpsons.features.characters.domain.Character
 
-class SimpsonsListAdapter(private var dataset: List<Character>) :
+class SimpsonsListAdapter(
+    private var dataset: List<Character>,
+    private val listener: CharacterListener
+) :
     RecyclerView.Adapter<SimpsonsListAdapter.ViewHolder>() {
-    class ViewHolder(private val binding: CharacterCardBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(character: Character){
+    class ViewHolder(private val binding: CharacterCardBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(character: Character) {
             binding.ccTvName.text = character.name
             binding.ccTvOccupation.text = character.occupation
             binding.ccTvStatus.text = character.status
@@ -22,7 +26,8 @@ class SimpsonsListAdapter(private var dataset: List<Character>) :
         parent: ViewGroup,
         viewType: Int
     ): ViewHolder {
-        val binding = CharacterCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding =
+            CharacterCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)
     }
 
@@ -30,13 +35,22 @@ class SimpsonsListAdapter(private var dataset: List<Character>) :
         holder: ViewHolder,
         position: Int
     ) {
-        holder.bind(dataset[position])
+        val character = dataset[position]
+        holder.itemView.setOnClickListener {
+            listener.onItemClick(character)
+        }
+        holder.bind(character)
     }
 
     override fun getItemCount() = dataset.size
 
-    fun updateCharacters(newCharactersList: List<Character>){
+    fun updateCharacters(newCharactersList: List<Character>) {
         dataset = newCharactersList
         notifyDataSetChanged()
     }
+
+}
+
+interface CharacterListener {
+    fun onItemClick(character: Character)
 }
