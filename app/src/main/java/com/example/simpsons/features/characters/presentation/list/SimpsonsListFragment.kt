@@ -116,8 +116,6 @@ class SimpsonsListFragment : Fragment() {
     }
 
     private fun navigateToDetailsFragment(id: String) {
-        val bundle = Bundle()
-        bundle.putString("id", id)
         findNavController().navigate(SimpsonsListFragmentDirections.actionFragmentListToFragmentDetails(id))
     }
 }
