@@ -7,17 +7,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.example.simpsons.R
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import coil3.load
 import com.example.simpsons.core.api.ApiClient
+import com.example.simpsons.databinding.FragmentSimpsonsDetailsBinding
 import com.example.simpsons.features.characters.data.CharactersDataRepository
 import com.example.simpsons.features.characters.data.remote.api.CharactersApiRemoteDataSource
 import com.example.simpsons.features.characters.domain.ErrorApp
 import com.example.simpsons.features.characters.domain.usecase.GetCharacterByIdUseCase
-import com.example.simpsons.features.characters.presentation.list.SimpsonsListViewModel
 
 class SimpsonsDetailsFragment : Fragment() {
 
+    private var _binding: FragmentSimpsonsDetailsBinding? = null
+    private val binding get() = _binding!!
+
+    private val adapter = SimpsonsPhrasesAdapter(emptyArray())
     private val simpsonId: SimpsonsDetailsFragmentArgs by navArgs()
     private val viewModel = SimpsonsDetailsViewModel(
         GetCharacterByIdUseCase(
@@ -38,13 +45,28 @@ class SimpsonsDetailsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_simpsons_details, container, false)
+        _binding = FragmentSimpsonsDetailsBinding.inflate(inflater, container, false)
+        val view = binding.root
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setUpRecyclerView()
         setUpObserver()
         viewModel.loadCharacterDetails(simpsonId.characterId)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding == null
+    }
+
+    private fun setUpRecyclerView() {
+        val recyclerView: RecyclerView = binding.fsdRvPhrases
+        recyclerView.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        recyclerView.adapter = adapter
     }
 
     private fun setUpObserver() {
@@ -63,8 +85,15 @@ class SimpsonsDetailsFragment : Fragment() {
                 }
             }
 
-            uiState.character.let {
-                Log.d("@dev", "${uiState.character}")
+            uiState.character?.let { characterDetails ->
+                Log.d("@dev", "$characterDetails")
+                binding.fsdMtMainToolbar.setNavigationOnClickListener {
+                    findNavController().navigateUp()
+                }
+                binding.fsdMtMainToolbar.title = characterDetails.name
+                binding.fsdIvCharacter.load(characterDetails.image)
+                binding.fsdTvDescription.text = characterDetails.description
+                adapter.updatePhrases(characterDetails.phrases)
             }
         }
         viewModel.uiState.observe(viewLifecycleOwner, observer)
