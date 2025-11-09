@@ -52,9 +52,16 @@ class SimpsonsDetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setUpNavigation()
         setUpRecyclerView()
         setUpObserver()
         viewModel.loadCharacterDetails(simpsonId.characterId)
+    }
+
+    private fun setUpNavigation() {
+        binding.fsdMtMainToolbar.setNavigationOnClickListener {
+            findNavController().popBackStack()
+        }
     }
 
     override fun onDestroyView() {
@@ -87,9 +94,6 @@ class SimpsonsDetailsFragment : Fragment() {
 
             uiState.character?.let { characterDetails ->
                 Log.d("@dev", "$characterDetails")
-                binding.fsdMtMainToolbar.setNavigationOnClickListener {
-                    findNavController().navigateUp()
-                }
                 binding.fsdMtMainToolbar.title = characterDetails.name
                 binding.fsdIvCharacter.load(characterDetails.image)
                 binding.fsdTvDescription.text = characterDetails.description
