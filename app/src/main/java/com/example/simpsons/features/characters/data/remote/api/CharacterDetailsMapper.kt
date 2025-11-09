@@ -12,7 +12,7 @@ fun CharacterDetailsApiModel.toModel(): CharacterDetails {
         this.name,
         this.occupation,
         this.phrases,
-        this.image,
+        "https://cdn.thesimpsonsapi.com/500${this.image}",
         this.status
     )
 }
