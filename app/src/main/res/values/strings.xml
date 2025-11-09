@@ -3,4 +3,6 @@
     <string name="retry">Reintentar</string>
     <string name="list_fragment">Listado de simpsons</string>
     <string name="details_fragment">Detalles de un simpson</string>
+    <string name="phrases">Frases significativas</string>
+    <string name="description">Descripción</string>
 </resources>

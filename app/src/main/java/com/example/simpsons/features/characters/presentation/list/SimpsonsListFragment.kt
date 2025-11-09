@@ -50,7 +50,9 @@ class SimpsonsListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setUpRecyclerView()
         setUpObserver()
-        viewModel.loadCharacters()
+        if (viewModel.uiState.value?.charactersList == null) {
+            viewModel.loadCharacters()
+        }
     }
 
     private val page = 1
@@ -116,8 +118,10 @@ class SimpsonsListFragment : Fragment() {
     }
 
     private fun navigateToDetailsFragment(id: String) {
-        val bundle = Bundle()
-        bundle.putString("id", id)
-        findNavController().navigate(SimpsonsListFragmentDirections.actionFragmentListToFragmentDetails(id))
+        findNavController().navigate(
+            SimpsonsListFragmentDirections.actionFragmentListToFragmentDetails(
+                id
+            )
+        )
     }
 }
