@@ -63,6 +63,9 @@ dependencies {
     implementation(libs.androidx.navigation.fragment)
     implementation(libs.androidx.navigation.ui)
     implementation(libs.androidx.navigation.dynamic.features.fragment)
+    //Paging
+    implementation(libs.androidx.paging.runtime)
+
     //Mockk
     testImplementation(libs.mockk)
     testImplementation(libs.kotlinx.coroutines.test)
