@@ -2,7 +2,8 @@ package com.example.simpsons.features.characters.presentation
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.simpsons.features.characters.domain.ErrorApp
-import com.example.simpsons.features.characters.domain.GetCharactersListUseCase
+import com.example.simpsons.features.characters.domain.usecase.GetCharactersListUseCase
+import com.example.simpsons.features.characters.presentation.list.SimpsonsListViewModel
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk

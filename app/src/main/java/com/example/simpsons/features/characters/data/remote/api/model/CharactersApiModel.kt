@@ -1,13 +1,11 @@
-package com.example.simpsons.features.characters.data.remote.api
-
-import com.example.simpsons.features.characters.domain.Character
+package com.example.simpsons.features.characters.data.remote.api.model
 
 data class CharactersApiModel(
+    val id: String,
     val name: String,
-    val age: String?,
     val occupation: String,
     val status: String,
-    val portrait_path:String?
+    val portrait_path: String?
 )
 
 data class ApiResponse(
